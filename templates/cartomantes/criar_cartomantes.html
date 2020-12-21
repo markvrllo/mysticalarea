@@ -1,0 +1,31 @@
+{% extends "cartomantes/base.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4 ml-5 mt-4">
+			<img src="\static\img\36687.jpg" class="img-fluid img-thumbnail">
+		</div>
+		<div class="container col-lg-6">
+			{% for msg in messages %}
+			<div class="alert {{msg.tags}} alert-success">
+				<button class="close" data-dismiss="alert" role="alert">
+					<span area-hidden="true">
+						&times;
+					</span>
+				</button>
+				{{msg}}
+			</div>
+			{% endfor %}
+			<form class="align-middle" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form | crispy }}
+				<input type="submit" name="Enviar" class="input-group btn-success btn">
+			</form>
+		</div>
+	</div>
+
+	{% endif %}
+	{% endblock content %}

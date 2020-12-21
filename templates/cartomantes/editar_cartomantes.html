@@ -1,0 +1,29 @@
+{% extends "cartomantes/base.html" %}
+
+{% load crispy_forms_tags %}
+{{cart}}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container col-lg-6">
+	<div class="row d-flex">
+		<div class="col-lg-6">
+			<figure>
+				<img src="{{cart.foto_url}}" class="img-fluid img-thumbnail" alt="">
+				<figcaption>
+					<h3>
+						{{cart.nome_cartomante}}
+					</h3>
+				</figcaption>
+			</figure>
+		</div>
+		<div class="col-lg-6">
+			<form class="align-middle" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form | crispy }}
+				<input type="submit" name="Enviar" class="input-group btn-success btn">
+			</form>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock content %}

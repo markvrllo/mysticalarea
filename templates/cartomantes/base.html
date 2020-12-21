@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/estilo.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<title>Área Mística</title>
+</head>
+<body>
+	<nav class="navbar bg-secondary navbar-dark">
+		<!--LOGO-->
+		<div class="container">
+			<a href="{% url 'index' %}">
+				<img src="/static/img/logo_site.png" width="100" height="100" alt="">
+			</a>
+			<!--Button Dropdown-->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!--Dropdown-->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav"><!--Menu Usuário-->
+					<li class="nav-item">
+						<a href="{% url 'index' %}" class="nav-link text-right"><i class="material-icons align-middle">home</i>
+							Início
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="nav-link dropdown-toggle text-right" data-toggle ="dropdown"><i class="material-icons align-middle">group</i>
+							Usuários
+						</a>
+						<ul class="dropdown-menu bg-secondary border-0">
+							<li>
+								<a href="{% url 'login' %}" class="dropdown-item text-right text-light">Login</a>
+							</li>
+							<li class="dropdown-divider"></li>
+							<li>
+								<a href="{% url 'criar_usuario' %}" class="dropdown-item text-right text-light">Registrar-se no Site</a>
+							</li>
+							<li class="dropdown-divider"></li>
+							<li>
+								<a href="{% url 'logout' %}" class="dropdown-item text-right text-light">Sair</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="navbar-nav">
+
+				</li>
+				{% if user.is_authenticated %}
+				<li class="nav-item">
+					<a href="{% url 'registrar_medium' %}" class="nav-link text-right">
+						<i class="material-icons align-middle">assignment_ind</i>Registrar um Médium
+					</a>
+				</li>
+				{% endif %}
+				<li class="nav-item">
+					<a href="{% url 'cartomantes' %}" class="nav-link text-right">
+						<i class="material-icons align-middle">assignment_turned_in</i>Médiuns Registrados
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<main>
+	<section class="jumbotron" ><!--Início Título-->
+		<div class="container">
+			<form method="GET" class="input-group">
+				<input class="form-control" 
+				type="search" placeholder="Busque Mediuns em nosso site!" name="search" value="{{request.POST.search}}">
+				<button class="btn btn-secondary ml-1">Pesquisar</button>
+			</form>
+		</div>
+	</section><!--Fim Título-->
+	<section>
+		{% block content %}
+
+		{% endblock content %}
+	</section>
+</main>
+<footer class="bg-secondary mt-4"><!--Autoexplicativo></!-->
+	<div class="container d-flex justify-content-between">
+		<span class="corada mt-4">
+			&copy 
+			<i>
+				Todos os Direitos Reservados 2020
+			</i>
+		</span>
+		<ul class="navbar icones">
+			<li><a href="https://twitter.com/?lang=en" class="text-hide">Twitter</a></li>
+			<li><a href="https://www.facebook.com/" class="text-hide">Facebook</a></li>
+			<li><a href="https://www.youtube.com/" class="text-hide">Youtube</a></li>
+		</ul>
+
+	</div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+crossorigin="anonymous"></script>
+<script type='text/javascript' src="/static/js/bootstrap.js"></script>
+<script src="/static/js/jquery.fitvids.js"></script>
+<script>
+	$(document).ready(function(){
+    // Target your .container, .wrapper, .post, etc.
+$("main").fitVids();});</script>
